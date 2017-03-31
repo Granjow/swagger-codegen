@@ -163,6 +163,10 @@ export class {{classname}} {
         this._useQuerystring = value;
     }
 
+    set basePath(basePath: string) {
+        this.basePath = basePath;
+    }
+
     public setApiKey(key: {{classname}}ApiKeys, value: string) {
         this.authentications[{{classname}}ApiKeys[key]].apiKey = value;
     }

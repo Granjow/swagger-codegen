@@ -167,6 +167,10 @@ export class PetApi {
         this._useQuerystring = value;
     }
 
+    set basePath(basePath: string) {
+        this.basePath = basePath;
+    }
+
     public setApiKey(key: PetApiApiKeys, value: string) {
         this.authentications[PetApiApiKeys[key]].apiKey = value;
     }
@@ -651,6 +655,10 @@ export class StoreApi {
         this._useQuerystring = value;
     }
 
+    set basePath(basePath: string) {
+        this.basePath = basePath;
+    }
+
     public setApiKey(key: StoreApiApiKeys, value: string) {
         this.authentications[StoreApiApiKeys[key]].apiKey = value;
     }
@@ -887,6 +895,10 @@ export class UserApi {
 
     set useQuerystring(value: boolean) {
         this._useQuerystring = value;
+    }
+
+    set basePath(basePath: string) {
+        this.basePath = basePath;
     }
 
     public setApiKey(key: UserApiApiKeys, value: string) {
