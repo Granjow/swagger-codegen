@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import request = require('request');
-import http = require('http');
-import Promise = require('bluebird');
+import * as request from 'request';
+import * as http from 'http';
+import * as Promise from 'bluebird';
 
 let defaultBasePath = 'http://petstore.swagger.io/v2';
 
@@ -179,7 +179,7 @@ export class PetApi {
      * 
      * @param body Pet object that needs to be added to the store
      */
-    public addPet (body?: Pet) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public addPet (body?: Pet) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/pet';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -209,7 +209,7 @@ export class PetApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -229,7 +229,7 @@ export class PetApi {
      * @param petId Pet id to delete
      * @param apiKey 
      */
-    public deletePet (petId: number, apiKey?: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deletePet (petId: number, apiKey?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/pet/{petId}'
             .replace('{' + 'petId' + '}', String(petId));
         let queryParameters: any = {};
@@ -266,7 +266,7 @@ export class PetApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -285,7 +285,7 @@ export class PetApi {
      * Multiple status values can be provided with comma separated strings
      * @param status Status values that need to be considered for filter
      */
-    public findPetsByStatus (status?: Array<string>) : Promise<{ response: http.ClientResponse; body: Array<Pet>;  }> {
+    public findPetsByStatus (status?: Array<string>) : Promise<{ response: http.IncomingMessage; body: Array<Pet>;  }> {
         const localVarPath = this.basePath + '/pet/findByStatus';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -318,7 +318,7 @@ export class PetApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: Array<Pet>;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: Array<Pet>;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -337,7 +337,7 @@ export class PetApi {
      * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * @param tags Tags to filter by
      */
-    public findPetsByTags (tags?: Array<string>) : Promise<{ response: http.ClientResponse; body: Array<Pet>;  }> {
+    public findPetsByTags (tags?: Array<string>) : Promise<{ response: http.IncomingMessage; body: Array<Pet>;  }> {
         const localVarPath = this.basePath + '/pet/findByTags';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -370,7 +370,7 @@ export class PetApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: Array<Pet>;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: Array<Pet>;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -389,7 +389,7 @@ export class PetApi {
      * Returns a pet when ID &lt; 10.  ID &gt; 10 or nonintegers will simulate API error conditions
      * @param petId ID of pet that needs to be fetched
      */
-    public getPetById (petId: number) : Promise<{ response: http.ClientResponse; body: Pet;  }> {
+    public getPetById (petId: number) : Promise<{ response: http.IncomingMessage; body: Pet;  }> {
         const localVarPath = this.basePath + '/pet/{petId}'
             .replace('{' + 'petId' + '}', String(petId));
         let queryParameters: any = {};
@@ -413,9 +413,9 @@ export class PetApi {
             json: true,
         };
 
-        this.authentications.petstore_auth.applyToRequest(requestOptions);
-
         this.authentications.api_key.applyToRequest(requestOptions);
+
+        this.authentications.petstore_auth.applyToRequest(requestOptions);
 
         this.authentications.default.applyToRequest(requestOptions);
 
@@ -426,7 +426,7 @@ export class PetApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: Pet;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: Pet;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -445,7 +445,7 @@ export class PetApi {
      * 
      * @param body Pet object that needs to be added to the store
      */
-    public updatePet (body?: Pet) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updatePet (body?: Pet) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/pet';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -475,7 +475,7 @@ export class PetApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -496,7 +496,7 @@ export class PetApi {
      * @param name Updated name of the pet
      * @param status Updated status of the pet
      */
-    public updatePetWithForm (petId: string, name?: string, status?: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updatePetWithForm (petId: string, name?: string, status?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/pet/{petId}'
             .replace('{' + 'petId' + '}', String(petId));
         let queryParameters: any = {};
@@ -539,7 +539,7 @@ export class PetApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -560,7 +560,7 @@ export class PetApi {
      * @param additionalMetadata Additional data to pass to server
      * @param file file to upload
      */
-    public uploadFile (petId: number, additionalMetadata?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public uploadFile (petId: number, additionalMetadata?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/pet/{petId}/uploadImage'
             .replace('{' + 'petId' + '}', String(petId));
         let queryParameters: any = {};
@@ -604,7 +604,7 @@ export class PetApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -663,7 +663,7 @@ export class StoreApi {
      * For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
      * @param orderId ID of the order that needs to be deleted
      */
-    public deleteOrder (orderId: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteOrder (orderId: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/store/order/{orderId}'
             .replace('{' + 'orderId' + '}', String(orderId));
         let queryParameters: any = {};
@@ -696,7 +696,7 @@ export class StoreApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -714,7 +714,7 @@ export class StoreApi {
      * Returns pet inventories by status
      * Returns a map of status codes to quantities
      */
-    public getInventory () : Promise<{ response: http.ClientResponse; body: { [key: string]: number; };  }> {
+    public getInventory () : Promise<{ response: http.IncomingMessage; body: { [key: string]: number; };  }> {
         const localVarPath = this.basePath + '/store/inventory';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -743,7 +743,7 @@ export class StoreApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: { [key: string]: number; };  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: { [key: string]: number; };  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -762,7 +762,7 @@ export class StoreApi {
      * For valid response try integer IDs with value &lt;&#x3D; 5 or &gt; 10. Other values will generated exceptions
      * @param orderId ID of pet that needs to be fetched
      */
-    public getOrderById (orderId: string) : Promise<{ response: http.ClientResponse; body: Order;  }> {
+    public getOrderById (orderId: string) : Promise<{ response: http.IncomingMessage; body: Order;  }> {
         const localVarPath = this.basePath + '/store/order/{orderId}'
             .replace('{' + 'orderId' + '}', String(orderId));
         let queryParameters: any = {};
@@ -795,7 +795,7 @@ export class StoreApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: Order;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: Order;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -814,7 +814,7 @@ export class StoreApi {
      * 
      * @param body order placed for purchasing the pet
      */
-    public placeOrder (body?: Order) : Promise<{ response: http.ClientResponse; body: Order;  }> {
+    public placeOrder (body?: Order) : Promise<{ response: http.IncomingMessage; body: Order;  }> {
         const localVarPath = this.basePath + '/store/order';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -842,7 +842,7 @@ export class StoreApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: Order;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: Order;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -901,7 +901,7 @@ export class UserApi {
      * This can only be done by the logged in user.
      * @param body Created user object
      */
-    public createUser (body?: User) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public createUser (body?: User) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/user';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -929,7 +929,7 @@ export class UserApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -948,7 +948,7 @@ export class UserApi {
      * 
      * @param body List of user object
      */
-    public createUsersWithArrayInput (body?: Array<User>) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public createUsersWithArrayInput (body?: Array<User>) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/user/createWithArray';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -976,7 +976,7 @@ export class UserApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -995,7 +995,7 @@ export class UserApi {
      * 
      * @param body List of user object
      */
-    public createUsersWithListInput (body?: Array<User>) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public createUsersWithListInput (body?: Array<User>) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/user/createWithList';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1023,7 +1023,7 @@ export class UserApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -1042,7 +1042,7 @@ export class UserApi {
      * This can only be done by the logged in user.
      * @param username The name that needs to be deleted
      */
-    public deleteUser (username: string) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public deleteUser (username: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/user/{username}'
             .replace('{' + 'username' + '}', String(username));
         let queryParameters: any = {};
@@ -1075,7 +1075,7 @@ export class UserApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -1094,7 +1094,7 @@ export class UserApi {
      * 
      * @param username The name that needs to be fetched. Use user1 for testing. 
      */
-    public getUserByName (username: string) : Promise<{ response: http.ClientResponse; body: User;  }> {
+    public getUserByName (username: string) : Promise<{ response: http.IncomingMessage; body: User;  }> {
         const localVarPath = this.basePath + '/user/{username}'
             .replace('{' + 'username' + '}', String(username));
         let queryParameters: any = {};
@@ -1127,7 +1127,7 @@ export class UserApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: User;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: User;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -1147,7 +1147,7 @@ export class UserApi {
      * @param username The user name for login
      * @param password The password for login in clear text
      */
-    public loginUser (username?: string, password?: string) : Promise<{ response: http.ClientResponse; body: string;  }> {
+    public loginUser (username?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: string;  }> {
         const localVarPath = this.basePath + '/user/login';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1182,7 +1182,7 @@ export class UserApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body: string;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -1200,7 +1200,7 @@ export class UserApi {
      * Logs out current logged in user session
      * 
      */
-    public logoutUser () : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public logoutUser () : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/user/logout';
         let queryParameters: any = {};
         let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1227,7 +1227,7 @@ export class UserApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -1247,7 +1247,7 @@ export class UserApi {
      * @param username name that need to be deleted
      * @param body Updated user object
      */
-    public updateUser (username: string, body?: User) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public updateUser (username: string, body?: User) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/user/{username}'
             .replace('{' + 'username' + '}', String(username));
         let queryParameters: any = {};
@@ -1281,7 +1281,7 @@ export class UserApi {
                 requestOptions.form = formParams;
             }
         }
-        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
